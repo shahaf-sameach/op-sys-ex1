@@ -245,10 +245,14 @@ int run_file(_IN char* sPath, _IN char* sInput_File, _IN char* sOutput_File, _OU
 	}
 
 	time(&start);
-	wpid = wait(&status);
+    //wpid = wait(&status);
 	time(&end);
 
-	if (end - start > 5)
+    while  (end - start <= 5) {
+        time(&end);
+    }
+
+    if (end - start > 5)
 	{
 		*iRun_Time = 1;
 		kill(pid, SIGKILL);
